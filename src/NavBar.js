@@ -1,10 +1,9 @@
 import React from "react";
-import { Container, Navbar,Nav } from "react-bootstrap";
+import { Container, Navbar,Nav, Button } from "react-bootstrap";
 import MusicStore from "./MusicStore";
 const NavBar=()=>{
     return(
         <>
-        
         <Navbar bg="dark"  expand="lg" variant="dark">
             <Container className="d-flex justify-content-center" style={{fontSize:25, fontFamily: 'Times New Roman'}}>
             <Nav>
@@ -13,6 +12,7 @@ const NavBar=()=>{
                 <Nav.Link href="#about">About</Nav.Link>
             </Nav>
             </Container>
+            <Button variant="dark" style={{borderColor:'cyan',borderWidth:3,marginRight:20,}}>cart</Button>
         </Navbar>
         <Navbar bg="secondary"  expand="lg" variant="dark" className="p-5 mt-1">
             <Container className="d-flex justify-content-center">
