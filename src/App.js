@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import NavBar from './NavBar';
-import Cart from './Cart';
 import MusicStore from './MusicStore';
+import Cart from './Cart';
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -16,21 +16,38 @@ const App = () => {
   }
 
   const addToCart = (item) => {
-    setCartItems([...cartItems, item]);
+    const isItemInCart = cartItems.some(cartItem => cartItem.id === item.id);
+    if (isItemInCart) {
+      alert('Item is already in the cart');
+    } else {
+      setCartItems([...cartItems, item]);
+    }
   };
-
   const removeFromCart = (index) => {
-    const newCartItems = cartItems.filter((_, i) => i !== index);
-    setCartItems(newCartItems);
+    setCartItems(cartItems.filter((_, i) => i !== index));
   };
-
+  const alertHandler=()=>{
+    if(cartItems == 0){
+      alert('You have Nothing in Cart , Add some products to purchase !');
+    }
+    else{
+      alert('Thank you for the purchase');
+      setCartItems([]);
+    }
+  }
   return (
     <>
-      <NavBar onShow={cartShowHandler} />
-      <MusicStore addToCart={addToCart} onShow={cartShowHandler}/>
-      {cartVisible && (
-        <Cart onHide={cartHideHandler} cartItems={cartItems} removeFromCart={removeFromCart} />
+    {cartVisible && (
+        <Cart 
+        onHide={cartHideHandler} 
+        cartItems={cartItems} 
+        removeFromCart={removeFromCart}
+        onAlert={alertHandler}
+        />
       )}
+      <NavBar onShow={cartShowHandler} cartItems={cartItems}/>
+      <MusicStore addToCart={addToCart} onShow={cartShowHandler}/>
+      
     </>
   );
 };

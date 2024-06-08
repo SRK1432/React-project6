@@ -49,6 +49,5 @@ const MusicStore = ({ addToCart, onShow}) => {
     </>
   );
 }
-
 export default MusicStore;
 
