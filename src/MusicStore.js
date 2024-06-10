@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Row, Col, Button, Image } from 'react-bootstrap';
+import { Container, Row, Col, Button, Image, Navbar } from 'react-bootstrap';
 
-const MusicStore = ({ addToCart, onShow}) => {
+const MusicStore = ({ addToCart, onShow }) => {
   const items = [
     { id: 1, title: 'Album 1', price: 12.99, imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png' },
     { id: 2, title: 'Album 2', price: 14.99, imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png' },
@@ -13,41 +13,51 @@ const MusicStore = ({ addToCart, onShow}) => {
 
   return (
     <>
-    <Container>
-      <Row className="mt-5">
-        <Col className="text-center">
-          <h1>MUSIC</h1>
-        </Col>
-      </Row>
-      <Row className="mt-5">
-        {items.slice(0, 4).map(item => (
-          <Col key={item.id} md={6} className="text-center">
-            <h2>{item.title}</h2>
-            <Image src={item.imageUrl} fluid={true} />
-            <p className="mt-3">${item.price}</p>
-            <Button variant="info" className="mt-1" onClick={() => addToCart(item)}>Add to Cart</Button>
+      <Container>
+        <Row className="mt-5">
+          <Col className="text-center">
+            <h1>MUSIC</h1>
           </Col>
-        ))}
-      </Row>
-      <Row className="mt-5">
-        <Col className="text-center">
-          <h1>MERCH</h1>
-        </Col>
-      </Row>
-      <Row className="mt-5">
-        {items.slice(4).map(item => (
-          <Col key={item.id} md={6} className="text-center">
-            <h2>{item.title}</h2>
-            <Image src={item.imageUrl} fluid={true} />
-            <p className="mt-3">${item.price}</p>
-            <Button variant="info" className="mt-1" onClick={() => addToCart(item)}>Add to Cart</Button>
+        </Row>
+        <Row className="mt-5">
+          {items.slice(0, 4).map(item => (
+            <Col key={item.id} md={6} className="text-center">
+              <h2>{item.title}</h2>
+              <Image src={item.imageUrl} fluid={true} />
+              <p className="mt-3">${item.price}</p>
+              <Button
+                variant="info" className="mt-1"
+                onClick={() => addToCart(item)}>
+                Add to Cart</Button>
+            </Col>
+          ))}
+        </Row>
+        <Row className="mt-5">
+          <Col className="text-center">
+            <h1>MERCHANDISE</h1>
           </Col>
-        ))}
-      </Row>
-    </Container>
-    <Button variant='secondary' className='mt-5 mb-4' style={{ marginLeft: 550, color: 'cyan' }} onClick={onShow}>See the Cart</Button>
+        </Row>
+        <Row className="mt-5">
+          {items.slice(4).map(item => (
+            <Col key={item.id} md={6} className="text-center">
+              <h2>{item.title}</h2>
+              <Image src={item.imageUrl} fluid={true} />
+              <p className="mt-3">${item.price}</p>
+              <Button
+                variant="info" className="mt-1"
+                onClick={() => addToCart(item)}>
+                Add to Cart</Button>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+      <Navbar bg="info" expand="lg" variant="dark" className="p-3 mt-1">
+        <Container >
+          <Navbar.Brand style={{ fontSize: 50, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
+        </Container>
+      </Navbar>
     </>
   );
-}
-export default MusicStore;
+};
 
+export default MusicStore;
