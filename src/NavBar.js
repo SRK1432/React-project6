@@ -17,11 +17,8 @@ const NavBar = ({ onShow, cartItems }) => {
           Cart<Badge bg='warning'>{cartItems.length}</Badge>
         </Button>
       </Navbar>
-      <Navbar bg="secondary" expand="lg" variant="dark" className="p-5 mt-1">
-        <Container className="d-flex justify-content-center">
-          <Navbar.Brand style={{ fontSize: 70, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
-        </Container>
-      </Navbar>
+      
+      
     </>
   );
 };

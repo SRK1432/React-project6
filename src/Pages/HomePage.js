@@ -1,9 +1,14 @@
 import React from "react";
-import { Button, Table, Container, Row, Col } from "react-bootstrap";
+import { Button, Table, Container, Row, Col,Navbar } from "react-bootstrap";
 
 const HomePage = () => {
   return (
     <>
+     <Navbar bg="secondary" expand="lg" variant="dark" className="p-5 mt-1">
+        <Container className="d-flex justify-content-center">
+          <Navbar.Brand style={{ fontSize: 70, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
+        </Container>
+      </Navbar>
       <h2 className="text-center" style={{ fontWeight: 'bold', fontStyle: 'italic' }}>ABOUT</h2>
       <Container className="d-flex justify-content-center mt-4">
         <Row className="w-100">

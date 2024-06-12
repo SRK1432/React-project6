@@ -13,6 +13,11 @@ const MusicStore = ({ addToCart, onShow }) => {
 
   return (
     <>
+     <Navbar bg="secondary" expand="lg" variant="dark" className="p-5 mt-1">
+        <Container className="d-flex justify-content-center">
+          <Navbar.Brand style={{ fontSize: 70, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
+        </Container>
+      </Navbar>
       <Container>
         <Row className="mt-5">
           <Col className="text-center">

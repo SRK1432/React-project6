@@ -3,6 +3,13 @@ import { Navbar, Container, Image } from "react-bootstrap";
 
 const AboutPage = () => {
   return (
+    <>
+     <Navbar bg="secondary" expand="lg" variant="dark" className="p-5 mt-1">
+        <Container className="d-flex justify-content-center">
+          <Navbar.Brand style={{ fontSize: 70, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
+        </Container>
+      </Navbar>
+    
     <Container className="mt-4">
       <h2 className="text-center" style={{ fontWeight: 'bold', fontStyle: 'italic' }}>ABOUT</h2>
       <Image
@@ -17,6 +24,7 @@ const AboutPage = () => {
         Lorem ipsum dolor, sit amet consectetur rebates. The distinction, that arise from or to. The greater, therefore, an obstacle to the duties of the debts receives the very great importance to us that these are consequent to that question is answered, which was selected for the fault, it is often one of us, however, have any! Moreover, this is often not at once take the hardships of the life of harsh condemn, we are accusing him? Him whom something large cisterns.
       </p>
     </Container>
+    </>
   );
 };
 

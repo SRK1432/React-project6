@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import NavBar from './NavBar';
 import MusicStore from './MusicStore';
 import Cart from './Cart';
-import { Navbar,Container } from 'react-bootstrap';
+import { Navbar,Container,Nav } from 'react-bootstrap';
+import { FaFacebook, FaSpotify, FaYoutube } from 'react-icons/fa';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -64,9 +65,13 @@ const App = () => {
       <ToastContainer />
       <Navbar bg="info" expand="lg" variant="dark" className="p-3 mt-1">
         <Container >
-          <Navbar.Brand style={{ fontSize: 50, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
+            <Navbar.Brand style={{ fontSize: 50, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
+            <Nav.Link href="https://www.facebook.com"><FaFacebook size={30} /></Nav.Link>
+            <Nav.Link href="https://www.spotify.com"><FaSpotify size={30} /></Nav.Link>
+            <Nav.Link href="https://www.youtube.com"><FaYoutube size={30} /></Nav.Link>
         </Container>
       </Navbar>
+      
     </Router>
   );
 };
