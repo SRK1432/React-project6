@@ -24,6 +24,6 @@ const NavBar = ({ onShow, cartItems }) => {
       </Navbar>
     </>
   );
-}
+};
 
 export default NavBar;

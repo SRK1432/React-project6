@@ -51,11 +51,7 @@ const MusicStore = ({ addToCart, onShow }) => {
           ))}
         </Row>
       </Container>
-      <Navbar bg="info" expand="lg" variant="dark" className="p-3 mt-1">
-        <Container >
-          <Navbar.Brand style={{ fontSize: 50, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
-        </Container>
-      </Navbar>
+      <Button variant='secondary' style={{ marginLeft: 600, color: 'aqua' }} onClick={onShow}>See Cart</Button>
     </>
   );
 };

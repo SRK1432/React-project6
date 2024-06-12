@@ -26,7 +26,7 @@ const Cart = ({ onHide, cartItems, removeFromCart, onAlert }) => {
         )}
         <Container className="text-center mt-4">
           <h3>Total: ${total.toFixed(2)}</h3>
-          <Button variant="success" onClick={onAlert}>Proceed to Checkout</Button>
+          <Button variant="success" onClick={onAlert}>Purchase</Button>
         </Container>
       </Modal.Body>
       <Modal.Footer>

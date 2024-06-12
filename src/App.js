@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NavBar from './NavBar';
 import MusicStore from './MusicStore';
 import Cart from './Cart';
+import { Navbar,Container } from 'react-bootstrap';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -10,15 +11,15 @@ import AboutPage from './Pages/AboutPage';
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
-  const [cartVisible, setCartVisible] = useState(false);
+  const [cartVisible, updateCartVisible] = useState(false);
 
   const cartShowHandler = () => {
-    setCartVisible(true);
-  }
+    updateCartVisible(true);
+  };
 
   const cartHideHandler = () => {
-    setCartVisible(false);
-  }
+    updateCartVisible(false);
+  };
 
   const addToCart = (item) => {
     const isItemInCart = cartItems.some(cartItem => cartItem.id === item.id);
@@ -61,6 +62,11 @@ const App = () => {
         />
       )}
       <ToastContainer />
+      <Navbar bg="info" expand="lg" variant="dark" className="p-3 mt-1">
+        <Container >
+          <Navbar.Brand style={{ fontSize: 50, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
+        </Container>
+      </Navbar>
     </Router>
   );
 };
