@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import NavBar from './NavBar';
-import MusicStore from './MusicStore';
-import Cart from './Cart';
+import NavBar from './components/NavBar';
+import MusicStore from './components/MusicStore';
+import Cart from './components/Cart';
 import { Navbar,Container,Nav } from 'react-bootstrap';
 import { FaFacebook, FaSpotify, FaYoutube } from 'react-icons/fa';
 import { ToastContainer, toast } from "react-toastify";
@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './Pages/HomePage';
 import AboutPage from './Pages/AboutPage';
+import ContactUs from './Pages/ContactUs';
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -53,6 +54,7 @@ const App = () => {
         <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/" element={<MusicStore addToCart={addToCart} onShow={cartShowHandler} />} />
+        <Route path='/contact' element={<ContactUs/>} />
       </Routes>
       {cartVisible && (
         <Cart

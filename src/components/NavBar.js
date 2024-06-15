@@ -11,6 +11,8 @@ const NavBar = ({ onShow, cartItems }) => {
             <Nav.Link as={Link} to="/home">Home</Nav.Link>
             <Nav.Link as={Link} to="/">Store</Nav.Link>
             <Nav.Link as={Link} to="/about">About</Nav.Link>
+            <Nav.Link as={Link} to="/contact">ContactUs</Nav.Link>
+            
           </Nav>
         </Container>
         <Button variant="dark" style={{ borderColor: 'cyan', borderWidth: 3, marginRight: 20 }} onClick={onShow}>
