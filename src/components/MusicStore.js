@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Button, Image, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const MusicStore = ({ addToCart, onShow }) => {
   const items = [
@@ -13,7 +14,7 @@ const MusicStore = ({ addToCart, onShow }) => {
 
   return (
     <>
-     <Navbar bg="secondary" expand="lg" variant="dark" className="p-5 mt-1">
+      <Navbar bg="secondary" expand="lg" variant="dark" className="p-5 mt-1">
         <Container className="d-flex justify-content-center">
           <Navbar.Brand style={{ fontSize: 70, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
         </Container>
@@ -28,7 +29,7 @@ const MusicStore = ({ addToCart, onShow }) => {
           {items.slice(0, 4).map(item => (
             <Col key={item.id} md={6} className="text-center">
               <h2>{item.title}</h2>
-              <Image src={item.imageUrl} fluid={true} />
+              <Link to={`/store/${item.id}`}><Image src={item.imageUrl} /></Link>
               <p className="mt-3">${item.price}</p>
               <Button
                 variant="info" className="mt-1"
@@ -46,7 +47,7 @@ const MusicStore = ({ addToCart, onShow }) => {
           {items.slice(4).map(item => (
             <Col key={item.id} md={6} className="text-center">
               <h2>{item.title}</h2>
-              <Image src={item.imageUrl} fluid={true} />
+              <Link to={`/store/${item.id}`}><Image src={item.imageUrl} /></Link>
               <p className="mt-3">${item.price}</p>
               <Button
                 variant="info" className="mt-1"

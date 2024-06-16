@@ -9,7 +9,7 @@ const NavBar = ({ onShow, cartItems }) => {
         <Container className="d-flex justify-content-center" style={{ fontSize: 25, fontFamily: 'Times New Roman' }}>
           <Nav>
             <Nav.Link as={Link} to="/home">Home</Nav.Link>
-            <Nav.Link as={Link} to="/">Store</Nav.Link>
+            <Nav.Link as={Link} to="/store">Store</Nav.Link>
             <Nav.Link as={Link} to="/about">About</Nav.Link>
             <Nav.Link as={Link} to="/contact">ContactUs</Nav.Link>
             

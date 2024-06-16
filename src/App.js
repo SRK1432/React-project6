@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NavBar from './components/NavBar';
 import MusicStore from './components/MusicStore';
 import Cart from './components/Cart';
-import { Navbar,Container,Nav } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import { FaFacebook, FaSpotify, FaYoutube } from 'react-icons/fa';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './Pages/HomePage';
 import AboutPage from './Pages/AboutPage';
 import ContactUs from './Pages/ContactUs';
+import ProductDetails from './Pages/ProductDetails';
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -53,8 +54,9 @@ const App = () => {
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/" element={<MusicStore addToCart={addToCart} onShow={cartShowHandler} />} />
-        <Route path='/contact' element={<ContactUs/>} />
+        <Route path="/store" exact element={<MusicStore addToCart={addToCart} onShow={cartShowHandler} />} />
+        <Route path='/contact' element={<ContactUs />} />
+        <Route path="/store/:productId" element={<ProductDetails />} />
       </Routes>
       {cartVisible && (
         <Cart
@@ -67,13 +69,12 @@ const App = () => {
       <ToastContainer />
       <Navbar bg="info" expand="lg" variant="dark" className="p-3 mt-1">
         <Container >
-            <Navbar.Brand style={{ fontSize: 50, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
-            <Nav.Link href="https://www.facebook.com"><FaFacebook size={30} /></Nav.Link>
-            <Nav.Link href="https://www.spotify.com"><FaSpotify size={30} /></Nav.Link>
-            <Nav.Link href="https://www.youtube.com"><FaYoutube size={30} /></Nav.Link>
+          <Navbar.Brand style={{ fontSize: 50, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
+          <Nav.Link href="https://www.facebook.com"><FaFacebook size={30} /></Nav.Link>
+          <Nav.Link href="https://www.spotify.com"><FaSpotify size={30} /></Nav.Link>
+          <Nav.Link href="https://www.youtube.com"><FaYoutube size={30} /></Nav.Link>
         </Container>
       </Navbar>
-      
     </Router>
   );
 };
