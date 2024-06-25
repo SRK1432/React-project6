@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import NavBar from './components/NavBar';
 import MusicStore from './components/MusicStore';
 import Cart from './components/Cart';
@@ -12,8 +12,10 @@ import AboutPage from './Pages/AboutPage';
 import ContactUs from './Pages/ContactUs';
 import ProductDetails from './Pages/ProductDetails';
 import LoginPage from './Pages/LoginPage';
+import AuthContext from './context-api/Auth-context';
 
 const App = () => {
+  const authCtx = useContext(AuthContext)
   const [cartItems, setCartItems] = useState([]);
   const [cartVisible, updateCartVisible] = useState(false);
 
@@ -55,7 +57,8 @@ const App = () => {
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/" exact element={<MusicStore addToCart={addToCart} onShow={cartShowHandler} />} />
+        
+        {authCtx.isLoggedIn && <Route path="/" exact element={<MusicStore addToCart={addToCart} onShow={cartShowHandler} />} />}
         <Route path='/contact' element={<ContactUs />} />
         <Route path="/:productId" element={<ProductDetails />} />
         <Route path="/login" element={<LoginPage />} />
