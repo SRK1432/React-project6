@@ -15,6 +15,7 @@ const ContactUs = () => {
         "Content-Type": "application/json"
       }
     })
+    console.log(name,email,phone);
   };
 
   return (

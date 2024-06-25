@@ -29,7 +29,7 @@ const MusicStore = ({ addToCart, onShow }) => {
           {items.slice(0, 4).map(item => (
             <Col key={item.id} md={6} className="text-center">
               <h2>{item.title}</h2>
-              <Link to={`/store/${item.id}`}><Image src={item.imageUrl} /></Link>
+              <Link to={`/${item.id}`}><Image src={item.imageUrl} /></Link>
               <p className="mt-3">${item.price}</p>
               <Button
                 variant="info" className="mt-1"
@@ -47,7 +47,7 @@ const MusicStore = ({ addToCart, onShow }) => {
           {items.slice(4).map(item => (
             <Col key={item.id} md={6} className="text-center">
               <h2>{item.title}</h2>
-              <Link to={`/store/${item.id}`}><Image src={item.imageUrl} /></Link>
+              <Link to={`/${item.id}`}><Image src={item.imageUrl} /></Link>
               <p className="mt-3">${item.price}</p>
               <Button
                 variant="info" className="mt-1"
