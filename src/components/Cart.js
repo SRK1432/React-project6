@@ -14,12 +14,12 @@ const Cart = ({ onHide, cartItems, removeFromCart, onAlert }) => {
           <p>Your cart is empty</p>
         ) : (
           <ListGroup>
-            {cartItems.map((item, index) => (
-              <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center">
+            {cartItems.map((item) => (
+              <ListGroup.Item key={item._id} className="d-flex justify-content-between align-items-center">
                 <Image src={item.imageUrl} style={{ width: '50px', marginRight: '10px' }} />
                 <div>{item.title}</div>
                 <div>${item.price}</div>
-                <Button variant="danger" onClick={() => removeFromCart(index)}>Remove</Button>
+                <Button variant="danger" onClick={() => removeFromCart(item._id)}>Remove</Button>
               </ListGroup.Item>
             ))}
           </ListGroup>

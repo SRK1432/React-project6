@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import NavBar from './components/NavBar';
 import MusicStore from './components/MusicStore';
 import Cart from './components/Cart';
@@ -13,18 +13,29 @@ import ContactUs from './Pages/ContactUs';
 import ProductDetails from './Pages/ProductDetails';
 import LoginPage from './Pages/LoginPage';
 import AuthContext from './context-api/Auth-context';
+import axios from 'axios';
 
 const App = () => {
-  const authCtx = useContext(AuthContext)
+  const authCtx = useContext(AuthContext);
   const [cartItems, setCartItems] = useState([]);
-  const [cartVisible, updateCartVisible] = useState(false);
+  const [cartVisible, setCartVisible] = useState(false);
+  
+  useEffect(() => {
+    axios.get('https://crudcrud.com/api/7766af6d360941c5aeceb334ab287d08/cart-item')
+      .then((response) => {
+        setCartItems(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const cartShowHandler = () => {
-    updateCartVisible(true);
+    setCartVisible(true);
   };
 
   const cartHideHandler = () => {
-    updateCartVisible(false);
+    setCartVisible(false);
   };
 
   const addToCart = (item) => {
@@ -32,14 +43,26 @@ const App = () => {
     if (isItemInCart) {
       alert('Item is already in the cart');
     } else {
-      setCartItems([...cartItems, item]);
-      toast.success('Your Product: ' + item.title + ' is added successfully', { position: 'bottom-right', theme: 'colored' });
+      axios.post('https://crudcrud.com/api/7766af6d360941c5aeceb334ab287d08/cart-item', item)
+        .then((response) => {
+          setCartItems([...cartItems, response.data]);
+          toast.success(`Your Product: ${item.title} is added successfully`, { position: 'bottom-right', theme: 'colored' });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
-  const removeFromCart = (index) => {
-    setCartItems(cartItems.filter((_, i) => i !== index));
-    toast.success('Item removed successfully', { position: 'bottom-right', theme: 'colored' });
+  const removeFromCart = (id) => {
+    axios.delete(`https://crudcrud.com/api/7766af6d360941c5aeceb334ab287d08/cart-item/${id}`)
+      .then(() => {
+        setCartItems(cartItems.filter(item => item.id !== id));
+        toast.success('Item removed successfully', { position: 'bottom-right', theme: 'colored' });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const alertHandler = () => {
@@ -57,10 +80,9 @@ const App = () => {
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
-        
-        {authCtx.isLoggedIn && <Route path="/" exact element={<MusicStore addToCart={addToCart} onShow={cartShowHandler} />} />}
+        {authCtx.isLoggedIn && <Route path="/" element={<MusicStore addToCart={addToCart} onShow={cartShowHandler} />} />}
         <Route path='/contact' element={<ContactUs />} />
-        <Route path="/:productId" element={<ProductDetails />} />
+        <Route path="/product/:productId" element={<ProductDetails />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
       {cartVisible && (
@@ -73,11 +95,13 @@ const App = () => {
       )}
       <ToastContainer />
       <Navbar bg="info" expand="lg" variant="dark" className="p-3 mt-1">
-        <Container >
+        <Container>
           <Navbar.Brand style={{ fontSize: 50, fontWeight: 'bolder', fontFamily: 'Times New Roman' }}>The Generics</Navbar.Brand>
-          <Nav.Link href="https://www.facebook.com"><FaFacebook size={30} /></Nav.Link>
-          <Nav.Link href="https://www.spotify.com"><FaSpotify size={30} /></Nav.Link>
-          <Nav.Link href="https://www.youtube.com"><FaYoutube size={30} /></Nav.Link>
+          <Nav className="ml-auto">
+            <Nav.Link href="https://www.facebook.com"><FaFacebook size={30} /></Nav.Link>
+            <Nav.Link href="https://www.spotify.com"><FaSpotify size={30} /></Nav.Link>
+            <Nav.Link href="https://www.youtube.com"><FaYoutube size={30} /></Nav.Link>
+          </Nav>
         </Container>
       </Navbar>
     </Router>

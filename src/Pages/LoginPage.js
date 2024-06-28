@@ -12,7 +12,7 @@ const LoginPage = () => {
     const submitHandler = (event) => {
         event.preventDefault();
 
-        fetch("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBWzmP1mDV0IYFqZ9kSV67TmRB3RoqdMgE", {
+        fetch("https://ecommerce-website-2cc6d-default-rtdb.firebaseio.com/data.json", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

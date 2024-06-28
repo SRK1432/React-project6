@@ -8,7 +8,7 @@ const ContactUs = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    fetch("https://react-http-a0270-default-rtdb.firebaseio.com/userData.json", {
+    fetch("https://ecommerce-website-2cc6d-default-rtdb.firebaseio.com/data.json", {
       method: "POST",
       body: JSON.stringify({ name, email, phone }),
       headers: {
