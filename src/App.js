@@ -1,25 +1,27 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import MusicStore from './components/MusicStore';
 import Cart from './components/Cart';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { FaFacebook, FaSpotify, FaYoutube } from 'react-icons/fa';
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './Pages/HomePage';
-import AboutPage from './Pages/AboutPage';
-import ContactUs from './Pages/ContactUs';
-import ProductDetails from './Pages/ProductDetails';
-import LoginPage from './Pages/LoginPage';
 import AuthContext from './context-api/Auth-context';
 import axios from 'axios';
+
+// Lazy load page components
+const HomePage = React.lazy(() => import('./Pages/HomePage'));
+const AboutPage = React.lazy(() => import('./Pages/AboutPage'));
+const ContactUs = React.lazy(() => import('./Pages/ContactUs'));
+const ProductDetails = React.lazy(() => import('./Pages/ProductDetails'));
+const LoginPage = React.lazy(() => import('./Pages/LoginPage'));
+const MusicStore = React.lazy(() => import('./components/MusicStore'));
 
 const App = () => {
   const authCtx = useContext(AuthContext);
   const [cartItems, setCartItems] = useState([]);
   const [cartVisible, setCartVisible] = useState(false);
-  
+
   useEffect(() => {
     axios.get('https://crudcrud.com/api/7766af6d360941c5aeceb334ab287d08/cart-item')
       .then((response) => {
@@ -57,7 +59,7 @@ const App = () => {
   const removeFromCart = (id) => {
     axios.delete(`https://crudcrud.com/api/7766af6d360941c5aeceb334ab287d08/cart-item/${id}`)
       .then(() => {
-        setCartItems(cartItems.filter(item => item.id !== id));
+        setCartItems(cartItems.filter(item => item._id !== id));
         toast.success('Item removed successfully', { position: 'bottom-right', theme: 'colored' });
       })
       .catch((error) => {
@@ -77,14 +79,16 @@ const App = () => {
   return (
     <Router>
       <NavBar onShow={cartShowHandler} cartItems={cartItems} />
-      <Routes>
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        {authCtx.isLoggedIn && <Route path="/" element={<MusicStore addToCart={addToCart} onShow={cartShowHandler} />} />}
-        <Route path='/contact' element={<ContactUs />} />
-        <Route path="/product/:productId" element={<ProductDetails />} />
-        <Route path="/login" element={<LoginPage />} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          {authCtx.isLoggedIn && <Route path="/" element={<MusicStore addToCart={addToCart} onShow={cartShowHandler} />} />}
+          <Route path='/contact' element={<ContactUs />} />
+          <Route path="/product/:productId" element={<ProductDetails />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      </Suspense>
       {cartVisible && (
         <Cart
           onHide={cartHideHandler}
